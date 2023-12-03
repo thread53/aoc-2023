@@ -29,3 +29,27 @@ for line in data:
         ids_sum += game_id
 
 print(ids_sum)
+
+
+## Part 2
+power_sum = 0
+
+for line in data:
+    game_data = line.split(":")
+    red_min = -999999
+    green_min = -999999
+    blue_min = -999999
+    for game_set in game_data[1].split(";"):
+        for cubes_set in game_set.split(","):
+            points = int(cubes_set.split()[0])
+            cube_color = cubes_set.split()[1]
+            if cube_color == "red" and points > red_min:
+                red_min = points
+            if cube_color == "green" and points > green_min:
+                green_min = points
+            if cube_color == "blue" and points > blue_min:
+                blue_min = points
+
+    power_sum += red_min * green_min * blue_min
+
+print(power_sum)
